@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Televerde · Detalle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header id="header" class="header"></header>
+
+  <section id="hero" class="hero">
+    <div class="hero-contenido">
+      <p class="hero-presenta" id="productora">Cargando...</p>
+      <p class="hero-categoria" id="categoria"></p>
+      <h1 class="hero-titulo titulo-grande" id="titulo"></h1>
+      <div class="hero-meta" id="meta"></div>
+      <p class="hero-sinopsis" id="sinopsis"></p>
+      <div class="hero-botones">
+        <button class="btn-play" id="btnPlay" title="Ver trailer">▶</button>
+        <a class="btn btn-borde" href="index.html">← Volver</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="detalle-cuerpo">
+    <div>
+      <h2 class="titulo-grande">Capítulos</h2>
+      <ul class="lista-capitulos" id="capitulos"></ul>
+    </div>
+    <div>
+      <h2 class="titulo-grande">Personajes</h2>
+      <div class="grid-personajes" id="personajes"></div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-caja">
+      <button class="btn btn-borde btn-chico modal-cerrar" onclick="cerrarTrailer()">Cerrar ✕</button>
+      <iframe id="video" class="video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/programa.js"></script>
+</body>
+</html>
