@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Televerde · Panel admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header id="header" class="header"></header>
+
+  <main class="admin">
+    <h1 class="titulo-grande">Panel admin</h1>
+
+    <!-- Pestañas -->
+    <div class="tabs">
+      <button class="btn btn-borde tab activa" data-tab="programas">Programas</button>
+      <button class="btn btn-borde tab" data-tab="categorias">Categorías</button>
+      <button class="btn btn-borde tab" data-tab="capitulos">Capítulos</button>
+      <button class="btn btn-borde tab" data-tab="personajes">Personajes</button>
+    </div>
+
+    <!-- ========== PROGRAMAS ========== -->
+    <section class="admin-grid seccion-tab" id="tab-programas">
+      <form class="panel" id="formPrograma">
+        <h2 id="tituloFormPrograma">Nuevo programa</h2>
+        <input type="hidden" id="programaId">
+        <div class="campo"><label>Título</label><input id="progTitulo" required></div>
+        <div class="campo"><label>Categoría</label><select id="progCategoria" class="select-categorias" required></select></div>
+        <div class="campo"><label>Sinopsis</label><textarea id="progSinopsis" rows="3" required minlength="10"></textarea></div>
+        <div class="campo"><label>Poster (url de imagen)</label><input id="progPoster" type="url" required></div>
+        <div class="campo"><label>Trailer (url de YouTube)</label><input id="progTrailer" type="url"></div>
+        <div class="campo"><label>Productora</label><input id="progProductora" required></div>
+        <div class="campo"><label>Año</label><input id="progAnio" type="number" min="1900" max="2100"></div>
+        <div class="botones-form">
+          <button class="btn btn-verde" type="submit">Guardar</button>
+          <button class="btn btn-borde" type="reset">Limpiar</button>
+        </div>
+        <p class="mensaje" id="msgPrograma"></p>
+      </form>
+      <div class="panel tabla-contenedor">
+        <table>
+          <thead><tr><th>Poster</th><th>Título</th><th>Categoría</th><th>Productora</th><th></th></tr></thead>
+          <tbody id="tablaProgramas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORIAS ========== -->
+    <section class="admin-grid seccion-tab oculto" id="tab-categorias">
+      <form class="panel" id="formCategoria">
+        <h2>Categoría</h2>
+        <input type="hidden" id="categoriaId">
+        <div class="campo"><label>Nombre</label><input id="catNombre" required maxlength="30"></div>
+        <div class="campo"><label>Color de tarjeta</label><input id="catColor" type="color" value="#1db954"></div>
+        <div class="botones-form">
+          <button class="btn btn-verde" type="submit">Guardar</button>
+          <button class="btn btn-borde" type="reset">Limpiar</button>
+        </div>
+        <p class="mensaje" id="msgCategoria"></p>
+      </form>
+      <div class="panel tabla-contenedor">
+        <table>
+          <thead><tr><th>Color</th><th>Nombre</th><th></th></tr></thead>
+          <tbody id="tablaCategorias"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========== CAPITULOS ========== -->
+    <section class="admin-grid seccion-tab oculto" id="tab-capitulos">
+      <form class="panel" id="formCapitulo">
+        <h2>Capítulo</h2>
+        <input type="hidden" id="capituloId">
+        <div class="campo"><label>Programa</label><select id="capPrograma" class="select-programas" required></select></div>
+        <div class="campo"><label>Número</label><input id="capNumero" type="number" min="1" required></div>
+        <div class="campo"><label>Título</label><input id="capTitulo" required></div>
+        <div class="campo"><label>Duración (minutos)</label><input id="capDuracion" type="number" min="1"></div>
+        <div class="botones-form">
+          <button class="btn btn-verde" type="submit">Guardar</button>
+          <button class="btn btn-borde" type="reset">Limpiar</button>
+        </div>
+        <p class="mensaje" id="msgCapitulo"></p>
+      </form>
+      <div class="panel tabla-contenedor">
+        <div class="campo filtro-admin"><label>Filtrar por programa</label><select id="filtroCapitulos" class="select-programas con-todos"></select></div>
+        <table>
+          <thead><tr><th>#</th><th>Título</th><th>Programa</th><th>Min</th><th></th></tr></thead>
+          <tbody id="tablaCapitulos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========== PERSONAJES ========== -->
+    <section class="admin-grid seccion-tab oculto" id="tab-personajes">
+      <form class="panel" id="formPersonaje">
+        <h2>Personaje</h2>
+        <input type="hidden" id="personajeId">
+        <div class="campo"><label>Programa</label><select id="perPrograma" class="select-programas" required></select></div>
+        <div class="campo"><label>Nombre del personaje</label><input id="perNombre" required></div>
+        <div class="campo"><label>Actor</label><input id="perActor" required></div>
+        <div class="botones-form">
+          <button class="btn btn-verde" type="submit">Guardar</button>
+          <button class="btn btn-borde" type="reset">Limpiar</button>
+        </div>
+        <p class="mensaje" id="msgPersonaje"></p>
+      </form>
+      <div class="panel tabla-contenedor">
+        <div class="campo filtro-admin"><label>Filtrar por programa</label><select id="filtroPersonajes" class="select-programas con-todos"></select></div>
+        <table>
+          <thead><tr><th>Personaje</th><th>Actor</th><th>Programa</th><th></th></tr></thead>
+          <tbody id="tablaPersonajes"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
