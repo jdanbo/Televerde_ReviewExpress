@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Televerde · Iniciar sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-login">
+
+  <div class="caja-login">
+    <div class="logo">tele<span>verde.</span></div>
+    <p class="subtitulo" id="subtitulo">Inicia sesión para ver los programas</p>
+
+    <!-- Formulario de login -->
+    <form id="formLogin">
+      <div class="campo">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" required>
+      </div>
+      <div class="campo">
+        <label for="loginPassword">Contraseña</label>
+        <input id="loginPassword" type="password" required>
+      </div>
+      <button class="btn btn-verde" type="submit">Entrar</button>
+    </form>
+
+    <!-- Formulario de registro -->
+    <form id="formRegistro" class="oculto">
+      <div class="campo">
+        <label for="regNombre">Nombre</label>
+        <input id="regNombre" type="text" required minlength="3">
+      </div>
+      <div class="campo">
+        <label for="regEmail">Email</label>
+        <input id="regEmail" type="email" required>
+      </div>
+      <div class="campo">
+        <label for="regPassword">Contraseña (mínimo 6)</label>
+        <input id="regPassword" type="password" required minlength="6">
+      </div>
+      <button class="btn btn-verde" type="submit">Crear cuenta</button>
+    </form>
+
+    <p id="mensaje" class="mensaje"></p>
+
+    <p class="cambiar-form">
+      <span id="textoCambiar">¿No tienes cuenta?</span>
+      <a id="linkCambiar">Regístrate</a>
+    </p>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
