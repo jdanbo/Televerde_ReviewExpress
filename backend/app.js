@@ -24,6 +24,11 @@ app.use('/api', (req, res) => {
   res.status(404).json({ ok: false, mensaje: 'Ruta no encontrada' });
 });
 
+// Cualquier otra pagina que no exista regresa al index.html (entry point)
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
 // Arrancamos
 const PORT = process.env.PORT || 3000;
 conectarDB().then(() => {

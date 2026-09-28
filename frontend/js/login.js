@@ -36,8 +36,8 @@ formLogin.addEventListener('submit', async (e) => {
   const res = await peticion('/auth/login', 'POST', datos);
 
   if (res.ok) {
-    // el admin va directo a su panel, el usuario al catalogo
-    location.href = res.usuario.rol === 'admin' ? 'admin.html' : 'index.html';
+    // todos entran al index; el admin vera ahi el boton "Panel admin"
+    location.href = 'index.html';
   } else {
     mostrarMensaje(textoErrores(res), 'error');
   }

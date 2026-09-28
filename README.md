@@ -1,7 +1,9 @@
 # Televerde 📺
 
+Proyecto Express 2026 · Daniel Borja
+
 API y app web para gestionar programas de televisión (novelas, anime, cartoons).
-Proyecto MVP hecho con Express, MongoDB, JWT y JavaScript puro (sin frameworks en el frontend).
+Hecho con Express, MongoDB, JWT y JavaScript puro (sin frameworks en el frontend).
 
 ## Qué incluye
 
@@ -18,13 +20,28 @@ Proyecto MVP hecho con Express, MongoDB, JWT y JavaScript puro (sin frameworks e
 ```bash
 cd backend
 npm install
-cp .env.example .env      # y llena tus datos reales
+copy .env.example .env    # (Windows) y llena tus datos reales
 npm run seed              # crea el admin y datos de prueba
 npm run dev               # servidor en http://localhost:3000
 ```
 
-Abre `http://localhost:3000` en el navegador.
-Admin por defecto: el `ADMIN_EMAIL` y `ADMIN_PASSWORD` de tu `.env`.
+Abre `http://localhost:3000` en el navegador. La entrada siempre es `index.html`:
+si no has iniciado sesión te manda al login y, al entrar, regresas al index.
+Admin por defecto: el `ADMIN_EMAIL` y `ADMIN_PASSWORD` de tu `.env`. Solo el admin ve el botón **Panel admin**.
+
+## Variables de entorno (.env)
+
+Crea el archivo `backend/.env` copiando `backend/.env.example`:
+
+| Variable | Para qué sirve | Ejemplo |
+|---|---|---|
+| `PORT` | Puerto del servidor | `3000` |
+| `MONGO_URI` | Conexión a MongoDB Atlas (la misma de Compass) | `mongodb+srv://USUARIO:PASSWORD@cluster0.xxxxx.mongodb.net/televerde` |
+| `JWT_SECRET` | Palabra secreta para firmar los tokens | `una_frase_larga_y_secreta` |
+| `ADMIN_EMAIL` | Email del admin que crea el seed | `admin@televerde.com` |
+| `ADMIN_PASSWORD` | Contraseña del admin que crea el seed | `Admin123` |
+
+> El `.env` real nunca se sube a GitHub (está en `.gitignore`). En `.env.example` solo van valores de ejemplo.
 
 > ⚠️ En MongoDB Atlas, entra a **Network Access** y agrega tu IP, si no, no conecta.
 

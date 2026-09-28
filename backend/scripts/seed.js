@@ -53,25 +53,38 @@ async function seed() {
     { nombre: 'Cartoons', color: '#7cb342' }
   ]);
 
-  // Programas de ejemplo (posters de prueba con picsum)
-  const programas = await Programa.insertMany([
-    { titulo: 'Amor en la Antigua', sinopsis: 'Una historia de amor y secretos familiares entre las calles empedradas de una ciudad colonial.', poster: 'https://picsum.photos/seed/novela1/400/600', productora: 'Estudios Quetzal', anio: 2024, categoria: novelas._id },
-    { titulo: 'Guardianes del Volcan', sinopsis: 'Un grupo de jovenes descubre que puede controlar los elementos y debe proteger su pueblo.', poster: 'https://picsum.photos/seed/anime1/400/600', productora: 'Studio Ceiba', anio: 2025, categoria: anime._id },
-    { titulo: 'Las Aventuras de Tito', sinopsis: 'Tito, un tacuazin curioso, vive aventuras divertidas en la selva junto a sus amigos.', poster: 'https://picsum.photos/seed/cartoon1/400/600', productora: 'Animados GT', anio: 2023, categoria: cartoons._id },
-    { titulo: 'Corazon de Jade', sinopsis: 'Dos familias rivales se enfrentan por una herencia, pero el amor lo cambia todo.', poster: 'https://picsum.photos/seed/novela2/400/600', productora: 'Estudios Quetzal', anio: 2025, categoria: novelas._id }
-  ]);
+  // Programas: animes populares en emision (posters de MyAnimeList)
+  const lista = [
+    { titulo: 'Re:Zero 4ta Temporada', sinopsis: 'Tras la dura batalla en la ciudad de Priestella, Subaru y sus aliados enfrentan nuevas amenazas mientras Subaru sigue regresando de la muerte para proteger a los que ama.', poster: 'https://cdn.myanimelist.net/images/anime/1540/155824l.jpg', productora: 'White Fox', anio: 2026, categoria: anime._id },
+    { titulo: 'JoJo: Steel Ball Run', sinopsis: 'En el viejo oeste americano comienza la carrera de caballos mas grande del mundo, donde Johnny y Gyro compiten por el premio y por un secreto mucho mayor.', poster: 'https://cdn.myanimelist.net/images/anime/1448/154111l.jpg', productora: 'David Production', anio: 2026, categoria: anime._id },
+    { titulo: 'Mushoku Tensei III', sinopsis: 'Rudeus continua su nueva vida en un mundo de fantasia, decidido a no repetir los errores de su vida pasada.', poster: 'https://cdn.myanimelist.net/images/anime/1527/158340l.jpg', productora: 'Studio Bind', anio: 2026, categoria: anime._id },
+    { titulo: 'One Piece', sinopsis: 'Monkey D. Luffy navega junto a su tripulacion en busca del legendario tesoro One Piece para convertirse en el Rey de los Piratas.', poster: 'https://cdn.myanimelist.net/images/anime/1244/138851l.jpg', productora: 'Toei Animation', anio: 1999, categoria: anime._id },
+    { titulo: 'Youjo Senki II', sinopsis: 'Tanya, una soldado reencarnada en un mundo magico en guerra, sigue avanzando en el ejercito con estrategia y sin piedad.', poster: 'https://cdn.myanimelist.net/images/anime/1917/158371l.jpg', productora: 'Nut', anio: 2026, categoria: anime._id },
+    { titulo: 'Chiikawa', sinopsis: 'Chiikawa y sus amigos, pequeñas criaturas adorables, viven aventuras cotidianas llenas de ternura, trabajo y uno que otro susto.', poster: 'https://cdn.myanimelist.net/images/anime/1783/121944l.jpg', productora: 'Doga Kobo', anio: 2022, categoria: cartoons._id }
+  ];
 
-  // Capitulos y personajes del primer programa
+  // los creamos uno por uno al reves, asi el primero de la lista sale como destacado
+  const programas = [];
+  for (const datos of [...lista].reverse()) {
+    programas.unshift(await Programa.create(datos));
+  }
+
+  // Capitulos
   await Capitulo.insertMany([
-    { programa: programas[0]._id, numero: 1, titulo: 'El reencuentro', duracion: 45 },
-    { programa: programas[0]._id, numero: 2, titulo: 'La carta', duracion: 44 },
-    { programa: programas[1]._id, numero: 1, titulo: 'El despertar', duracion: 24 }
+    { programa: programas[0]._id, numero: 1, titulo: 'Episodio 1', duracion: 24 },
+    { programa: programas[0]._id, numero: 2, titulo: 'Episodio 2', duracion: 24 },
+    { programa: programas[0]._id, numero: 3, titulo: 'Episodio 3', duracion: 24 },
+    { programa: programas[1]._id, numero: 1, titulo: 'Episodio 1', duracion: 24 },
+    { programa: programas[3]._id, numero: 1, titulo: 'Episodio 1', duracion: 24 }
   ]);
 
+  // Personajes con su actor de voz (seiyuu)
   await Personaje.insertMany([
-    { programa: programas[0]._id, nombre: 'Lucia', actor: 'Maria Lopez' },
-    { programa: programas[0]._id, nombre: 'Andres', actor: 'Carlos Perez' },
-    { programa: programas[1]._id, nombre: 'Kai', actor: 'Diego Ramirez (voz)' }
+    { programa: programas[0]._id, nombre: 'Subaru Natsuki', actor: 'Yuusuke Kobayashi' },
+    { programa: programas[0]._id, nombre: 'Emilia', actor: 'Rie Takahashi' },
+    { programa: programas[0]._id, nombre: 'Rem', actor: 'Inori Minase' },
+    { programa: programas[3]._id, nombre: 'Monkey D. Luffy', actor: 'Mayumi Tanaka' },
+    { programa: programas[3]._id, nombre: 'Roronoa Zoro', actor: 'Kazuya Nakai' }
   ]);
 
   console.log('Datos de prueba listos');
